@@ -22,7 +22,7 @@
     exit()
   }
 
-  const punch = function(name, needCheck) {
+  const punch = function(name) {
     let btn = text(name).findOne(2000)
     if (btn) {
       click(btn.bounds().centerX(), btn.bounds().centerY());
