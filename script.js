@@ -27,11 +27,20 @@
     if (btn) {
       click(btn.bounds().centerX(), btn.bounds().centerY());
       console.log(name + " 已点击")
-      sleep(1000)
-      punch("确定", false)
+      punchYes()
       endScript()
     } else {
       console.log("找不到 " + name + " 按钮");
+    }
+  }
+  const punchYes = function() {
+    let btn = text("确定").findOne(2000)
+    if (btn) {
+      btn.click()
+      console.log("确定" + " 已点击")
+      endScript()
+    } else {
+      console.log("找不到 " + "确定" + " 按钮");
     }
   }
 
@@ -40,6 +49,7 @@
     if (currentPackage() !== xiao) {
       app.launchPackage(xiao)
       console.log("opened xiao");
+      backToMain()
     } else {
       backToMain()
     }
