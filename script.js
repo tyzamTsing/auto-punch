@@ -25,7 +25,7 @@
   const punch = function(name, needCheck) {
     let btn = text(name).findOne(2000)
     if (btn) {
-      btn.click()
+      click(btn.bounds().centerX(), btn.bounds().centerY());
       console.log(name + " 已点击")
       sleep(1000)
       punch("确定", false)
@@ -74,9 +74,9 @@
 
   const enterThePunch = function() {
     // 1. 点击教师考勤
-    let btn = text("教师考勤").findOne(6000).parent() // 等6秒，是为了防止冷启动需要等很久
+    let btn = text("教师考勤").findOne(6000) // 等6秒，是为了防止冷启动需要等很久
     if (btn) {
-      btn.click()
+      click(btn.bounds().centerX(), btn.bounds().centerY());
       console.log("教师考勤 已点击")
     } else {
       console.log("*** 找不到 教师考勤 按钮");
@@ -84,9 +84,9 @@
     }
 
     // 2. 点击考勤打卡
-    btn = text("考勤打卡").findOne(3000).parent()
+    btn = text("考勤打卡").findOne(3000)
     if (btn) {
-      btn.click()
+      click(btn.bounds().centerX(), btn.bounds().centerY());
       console.log("考勤打卡 已点击")
     } else {
       console.log("*** 找不到 考勤打卡 按钮");
