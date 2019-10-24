@@ -25,7 +25,7 @@
   const punch = function(name) {
     let btn = text(name).findOne(2000)
     if (btn) {
-      click(btn.bounds().centerX(), btn.bounds().centerY());
+      btn.click()
       console.log(name + " 已点击")
       punchYes()
       endScript()
@@ -56,14 +56,14 @@
   }
 
   const unlockScreen = function() {
-    const max_try = 10
+    const max_try = 5
     const keyguard_manager = context.getSystemService(context
       .KEYGUARD_SERVICE);
     let isLocked = () => keyguard_manager.isKeyguardLocked();
 
     while (isLocked() && max_try !== 0) {
       max_try--
-      sleep(500)
+      sleep(1000)
       console.log("unlocked screen");
       gesture(320, [394, 1536], [680, 320]) // 我也不知道为啥持续时间要是320
     }
@@ -74,8 +74,8 @@
   }
 
   const waitForLoacte = function() {
-    const waitTime = 5
-    while (text("定位中").findOne(1000) && waitTime !== 0) {
+    const waitTime = 10
+    while (text("定位中").findOne(100) && waitTime !== 0) {
       console.log("-- 定位中 --")
       sleep(1000)
       waitTime--
@@ -83,10 +83,23 @@
   }
 
   const enterThePunch = function() {
-    // 1. 点击教师考勤
-    let btn = text("教师考勤").findOne(6000) // 等6秒，是为了防止冷启动需要等很久
+    // 0. 点击通知
+    let btn = id("tab_item_text").className("android.widget.TextView").text(
+      "通知").findOne(6000).parent()
     if (btn) {
-      click(btn.bounds().centerX(), btn.bounds().centerY());
+      btn.click()
+      console.log("通知 已点击")
+    } else {
+      console.log("*** 找不到 通知 按钮");
+      endScript() // 这里找不到就结束
+    }
+    sleep(1000)
+
+    // 1. 点击教师考勤
+    btn = text("教师考勤").findOne(3000).parent() // 等6秒，是为了防止冷启动需要等很久
+    if (btn) {
+      btn.click()
+      // click(btn.bounds().centerX(), btn.bounds().centerY());
       console.log("教师考勤 已点击")
     } else {
       console.log("*** 找不到 教师考勤 按钮");
