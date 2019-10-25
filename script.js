@@ -25,6 +25,7 @@
   const punch = function(name) {
     let btn = text(name).findOne(2000)
     if (btn) {
+      sleep(2000)
       btn.click()
       console.log(name + " 已点击")
       punchYes()
@@ -36,6 +37,7 @@
   const punchYes = function() {
     let btn = text("确定").findOne(2000)
     if (btn) {
+      sleep(1000)
       btn.click()
       console.log("确定" + " 已点击")
       endScript()
@@ -49,7 +51,6 @@
     if (currentPackage() !== xiao) {
       app.launchPackage(xiao)
       console.log("opened xiao");
-      backToMain()
     } else {
       backToMain()
     }
@@ -74,6 +75,7 @@
   }
 
   const waitForLoacte = function() {
+    sleep(2000)
     const waitTime = 10
     while (text("定位中").findOne(100) && waitTime !== 0) {
       console.log("-- 定位中 --")
@@ -152,6 +154,6 @@
   punch("更新打卡")
 
   // 如果啥按钮都没有，就跑路
-  console.log("nothing to punch")
+  console.log("*** nothing to punch")
   endScript()
 })()
