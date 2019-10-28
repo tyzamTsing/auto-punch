@@ -133,7 +133,7 @@
   // 写毫秒的话反应不过来要等多久。。
   console.log("random sleep " + Math.floor(sleepTime / 1000) + " s")
   device.keepScreenOn(sleepTime)
-  // sleep(sleepTime)
+  sleep(sleepTime)
   console.log("random sleep end")
 
   // 1. 开启晓黑板
